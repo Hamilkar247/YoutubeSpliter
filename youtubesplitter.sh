@@ -2,7 +2,7 @@
 namefile = ''
 function parting_video()
 {
-  part_file="parts.txt"
+  rozdzialy_timestamp="rozpiska-rozdzialow.txt"
   while IFS= read -r line
   do
     echo "witam"
@@ -14,7 +14,7 @@ function parting_video()
     echo "${tablica[1]}"
     echo "${tablica[2]}"
     ffmpeg -ss $starttime -i "$namefile" -to $endtime -c copy "$nameoutput"
-  done < "$part_file"
+  done < "$rozdzialy_timestamp"
 }
 
 youtube-dl -i --verbose --extract-audio --audio-format  mp3 "$1"
