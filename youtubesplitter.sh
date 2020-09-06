@@ -23,6 +23,7 @@ namefile="$(find . -name "*.mp3" -exec basename {} .po \;)"
 echo "$namefile"
 parting_video
 rm namefile
+mv *.mp3 $MP3_Folder
 #var="$(awk 'NR==1 {print; exit}' parts.txt)"
 ##ffmpeg -ss "00:00:00" -i "$namefile" -to "00:05:00" -c copy output.mp3
 #IFS='-' read -ra ADDR <<< "$var"
