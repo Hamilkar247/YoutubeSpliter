@@ -1,20 +1,24 @@
 #!/bin/bash
 namefile = ''
+
+
+
 function parting_video()
 {
+  rm file.txt
+  rm error.txt
+  rm Taś*
   rozdzialy_timestamp="rozpiska-rozdzialow.txt"
   while IFS= read -r line
   do
-    echo "witam"
-    IFS='- ' read -ra tablica <<< "$line"
-    echo "${tablica[0]}"
+    IFS='-' read -ra tablica <<< "$line"
     starttime="${tablica[0]}"
     endtime="${tablica[1]}"
     nameoutput="${tablica[2]}"" $namefile"
-    echo "${tablica[1]}"
-    echo "${tablica[2]}"
-    #ffmpeg -ss $starttime -i "$namefile" -to $endtime -c copy "$nameoutput"
-    #mp3-tagger-dane
+    echo "starttime: ${tablica[0]}" >> file.txt 2>>error.txt
+    echo "endtime: ${tablica[1]}" >> file.txt 2>>error.txt
+    echo "nazwaczesci: ${tablica[2]}" >> file.txt 2>>error.txt
+    ffmpeg -ss $starttime -i "$namefile" -to $endtime -c copy "$nameoutput"
   done < "$rozdzialy_timestamp"
 }
 
