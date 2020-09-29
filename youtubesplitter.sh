@@ -18,7 +18,7 @@ function parting_video()
     echo "starttime: ${tablica[0]}" >> file.txt 2>>error.txt
     echo "endtime: ${tablica[1]}" >> file.txt 2>>error.txt
     echo "nazwaczesci: ${tablica[2]}" >> file.txt 2>>error.txt
-    ffmpeg -ss $starttime -i "$namefile" -to $endtime -c copy "$nameoutput"
+    ffmpeg -n -ss $starttime -i "$namefile" -to $endtime -c copy "$nameoutput"
   done < "$rozdzialy_timestamp"
 }
 
